@@ -1,18 +1,13 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% load widget_tweaks %} 
+{% block content %}
+{{form.course.label_tag}} 
+{% render_field form.course class="custom-select mb-4" autocomplete='off'%}
 
-<select
-  class="form-select form-select-lg mb-3"
-  name="course"
-  hx-get="{% url 'modules' %}"
-  hx-trigger="change"
-  hx-traget="#modules"
->
-  <option selected>Open this select menu</option>
 
-  {% for course in courses %}
-  <option value="{{course.pk}}">{{course}}</option>
-  {% endfor %}
-</select>
+<div id="modules">
+  {{form.modules.label_tag}} 
+{% render_field form.modules class="custom-select mb-4" autocomplete='off'%}
 
-<div id="modules">{% include 'partials/modules.html' %}</div>
+</div>
 {% endblock %}
