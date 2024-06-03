@@ -9,7 +9,6 @@ def course(request):
     }
     return render(request, 'university.html',context)
 
-
 def modules_view(request):
     course = request.GET.get("course")
     modules = Module.objects.filter(course=course)

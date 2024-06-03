@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+{% block content %} 
+<h3>Our books list</h3>
+<form hx-get="{% url 'index'%}" hx-target='body' hx-traggier='mousenter'>
+  <input type="text">
+ 
+  {{form.as_p}}
+    <input type="submit">
+</form>
+
+<hr>
+<h2>Books list </h2>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Author</th>
+      <th scope="col">Gener</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+     {% for book in books %}
+    <tr>
+      <th scope="row">{{forloop.counter}}</th>
+      <td>{{book.name}}</td>
+      <td>{{book.author}}</td>
+      <td>{{book.get_genre_display}}</td>
+      <td>{{book.price}} $</td>
+
+    </tr>
+    {% endfor %}  
+   
+  </tbody>
+</table>
+
+
+{% endblock %}
